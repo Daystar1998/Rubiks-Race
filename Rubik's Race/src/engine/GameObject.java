@@ -33,6 +33,11 @@ public class GameObject {
 	private ArrayList<GameObject> children;
 	private ArrayList<GameObject> removedChildren;
 
+	public GameObject() {
+
+		this(new Vector2f(), new Vector2f(1, 1));
+	}
+
 	public GameObject(Vector2f position, Vector2f scale) {
 
 		this.position = position;
