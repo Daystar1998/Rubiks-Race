@@ -54,11 +54,11 @@ public class GameObject {
 		removedChildren.clear();
 	}
 
-	public void draw(Display display) {
+	public void render(Display display) {
 
 		for (GameObject child : children) {
 
-			child.draw(display);
+			child.render(display);
 		}
 	}
 
