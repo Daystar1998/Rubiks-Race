@@ -65,7 +65,6 @@ public class GameObject {
 	public void addChild(GameObject child) {
 
 		child.setParent(this);
-		child.setPosition(child.getPosition());
 
 		children.add(child);
 	}
@@ -87,15 +86,7 @@ public class GameObject {
 
 	void setPosition(Vector2f position) {
 
-		// Sets the child's position relative to the parent's position
-		Vector2f parentPosition = parent.getPosition();
-		this.position.x = parentPosition.x + position.x;
-		this.position.y = parentPosition.y + position.y;
-
-		for (GameObject child : children) {
-
-			child.setPosition(child.getPosition());
-		}
+		this.position = position;
 	}
 
 	public Vector2f getPosition() {
