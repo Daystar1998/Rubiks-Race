@@ -110,7 +110,7 @@ public class GameObject {
 		return scale;
 	}
 
-	public void setWidth(Vector2f scale) {
+	public void setScale(Vector2f scale) {
 
 		this.scale = scale;
 	}
