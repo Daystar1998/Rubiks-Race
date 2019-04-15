@@ -1,7 +1,9 @@
 package engine;
 
 import engine.graphics.Display;
+import engine.math.Vector2f;
 import java.util.ArrayList;
+import javax.swing.text.Position;
 
 /*
  * Copyright 2019 Matthew Day.
@@ -25,25 +27,14 @@ import java.util.ArrayList;
 
 public class GameObject {
 
-	public class Position {
-
-		int x, y;
-
-		Position(int x, int y) {
-
-			this.x = x;
-			this.y = y;
-		}
-	}
-
-	private Position position;
+	private Vector2f position;
 	private int width, height;
 
 	private GameObject parent = null;
 	private ArrayList<GameObject> children;
 	private ArrayList<GameObject> removedChildren;
 
-	public GameObject(Position position, int width, int height) {
+	public GameObject(Vector2f position, int width, int height) {
 
 	}
 
@@ -98,10 +89,10 @@ public class GameObject {
 		return children.size();
 	}
 
-	void setPosition(Position position) {
+	void setPosition(Vector2f position) {
 
 		// Sets the child's position relative to the parent's position
-		Position parentPosition = parent.getPosition();
+		Vector2f parentPosition = parent.getPosition();
 		this.position.x = parentPosition.x + position.x;
 		this.position.y = parentPosition.y + position.y;
 
@@ -111,7 +102,7 @@ public class GameObject {
 		}
 	}
 
-	public Position getPosition() {
+	public Vector2f getPosition() {
 
 		return position;
 	}
