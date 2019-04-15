@@ -25,6 +25,8 @@ import java.util.ArrayList;
  */
 
 public class GameObject {
+	
+	private static GameObject root = null;
 
 	private Vector2f position;
 	private Vector2f scale;
@@ -136,5 +138,15 @@ public class GameObject {
 	public void setParent(GameObject newParent) {
 
 		parent = newParent;
+	}
+	
+	public static GameObject getRootObject(){
+		
+		if(root == null){
+			
+			root = new GameObject();
+		}
+		
+		return root;
 	}
 }
