@@ -58,13 +58,17 @@ public class GameObject {
 
 	public void update() {}
 
-	public void render(Display display) {
+	public void renderAll(Display display) {
+		
+		render(display);
 
 		for (GameObject child : children) {
 
-			child.render(display);
+			child.renderAll(display);
 		}
 	}
+
+	public void render(Display display) {}
 
 	public void addChild(GameObject child) {
 
