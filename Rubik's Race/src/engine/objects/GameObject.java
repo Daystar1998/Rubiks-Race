@@ -112,7 +112,18 @@ public class GameObject {
 
 	public Vector2f getScale() {
 
-		return scale;
+		Vector2f result = null;
+		
+		if(parent != null){
+			
+			// Get the child's scale relative to the parent's scale
+			result = position.mul(parent.scale);
+		}else{
+			
+			result = new Vector2f(scale);
+		}
+		
+		return result;
 	}
 
 	public void setScale(Vector2f scale) {
