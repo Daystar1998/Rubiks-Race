@@ -28,14 +28,16 @@ import javax.swing.text.Position;
 public class GameObject {
 
 	private Vector2f position;
-	private int width, height;
+	private Vector2f scale;
 
 	private GameObject parent = null;
 	private ArrayList<GameObject> children;
 	private ArrayList<GameObject> removedChildren;
 
-	public GameObject(Vector2f position, int width, int height) {
+	public GameObject(Vector2f position, Vector2f scale) {
 
+		this.position = position;
+		this.scale = scale;
 	}
 
 	public void update() {
@@ -107,24 +109,14 @@ public class GameObject {
 		return position;
 	}
 
-	public int getWidth() {
+	public Vector2f getScale() {
 
-		return width;
+		return scale;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(Vector2f scale) {
 
-		this.width = width;
-	}
-
-	public int getHeight() {
-
-		return height;
-	}
-
-	public void setHeight(int height) {
-
-		this.height = height;
+		this.scale = scale;
 	}
 
 	public GameObject getParent() {
