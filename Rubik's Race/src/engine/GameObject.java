@@ -89,16 +89,6 @@ public class GameObject {
 		removedChildren.add(child);
 	}
 
-	public GameObject getChild(int index) {
-
-		return children.get(index);
-	}
-
-	public int getNumberOfChildren() {
-
-		return children.size();
-	}
-
 	void setPosition(Vector2f position) {
 
 		this.position = position;
