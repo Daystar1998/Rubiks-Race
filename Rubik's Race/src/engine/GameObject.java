@@ -38,12 +38,14 @@ public class GameObject {
 		this.position = position;
 		this.scale = scale;
 	}
-
-	public void update() {
-
+	
+	public void updateAll(){
+		
+		update();
+		
 		for (GameObject child : children) {
 
-			child.update();
+			child.updateAll();
 		}
 
 		for (int i = 0; i < removedChildren.size(); i++) {
@@ -53,6 +55,8 @@ public class GameObject {
 
 		removedChildren.clear();
 	}
+
+	public void update() {}
 
 	public void render(Display display) {
 
