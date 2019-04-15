@@ -90,8 +90,19 @@ public class GameObject {
 	}
 
 	public Vector2f getPosition() {
-
-		return position;
+		
+		Vector2f result = null;
+		
+		if(parent != null){
+			
+			// Get the child's position relative to the parent's position
+			result = position.add(parent.position);
+		}else{
+			
+			result = new Vector2f(position.x, position.y);
+		}
+		
+		return result;
 	}
 
 	public Vector2f getScale() {
