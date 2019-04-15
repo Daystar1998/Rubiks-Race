@@ -34,6 +34,11 @@ public class Vector2f {
 		this.x = x;
 		this.y = y;
 	}
+
+	public Vector2f(Vector2f vector) {
+
+		this(vector.x, vector.y);
+	}
 	
 	public Vector2f add(Vector2f other){
 		
