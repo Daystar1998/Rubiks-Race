@@ -1,4 +1,4 @@
-package engine;
+package engine.objects;
 
 import engine.graphics.Display;
 import engine.math.Vector2f;
