@@ -15,9 +15,11 @@ package engine.math;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @author Matthew Day
  */
+
 public class Vector2f {
 
 	public float x, y;
@@ -31,6 +33,11 @@ public class Vector2f {
 
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Vector2f add(Vector2f other){
+		
+		return new Vector2f(this.x + other.x, this.y + other.y);
 	}
 
 	public float getX() {
