@@ -104,7 +104,7 @@ public class GameObject {
 			result = position.add(parent.position);
 		}else{
 			
-			result = new Vector2f(position.x, position.y);
+			result = new Vector2f(position);
 		}
 		
 		return result;
