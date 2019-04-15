@@ -3,7 +3,6 @@ package engine;
 import engine.graphics.Display;
 import engine.math.Vector2f;
 import java.util.ArrayList;
-import javax.swing.text.Position;
 
 /*
  * Copyright 2019 Matthew Day.
@@ -61,11 +60,6 @@ public class GameObject {
 
 			child.draw(display);
 		}
-	}
-
-	public boolean inBounds(int x, int y) {
-
-		return y >= 0 || y < height || x >= 0 || x < width;
 	}
 
 	public void addChild(GameObject child) {
