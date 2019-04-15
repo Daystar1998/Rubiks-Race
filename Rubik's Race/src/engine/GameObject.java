@@ -36,24 +36,12 @@ public class GameObject {
 		}
 	}
 
-	protected enum Status {
-
-		RUNNING,
-		FAILURE,
-		FOCUSED,
-		SUCCESS
-	};
-
 	private Position position;
 	private int width, height;
 
-	private Status currentStatus = Status.RUNNING;
-
-	private GameObject parent  = null;
+	private GameObject parent = null;
 	private ArrayList<GameObject> children;
 	private ArrayList<GameObject> removedChildren;
-
-	private ArrayList<Integer> data;
 
 	public GameObject(Position position, int width, int height) {
 
@@ -110,16 +98,6 @@ public class GameObject {
 		return children.size();
 	}
 
-	public Status getStatus() {
-
-		return currentStatus;
-	}
-
-	public void setStatus(Status status) {
-
-		currentStatus = status;
-	}
-
 	void setPosition(Position position) {
 
 		// Sets the child's position relative to the parent's position
@@ -146,9 +124,6 @@ public class GameObject {
 	public void setWidth(int width) {
 
 		this.width = width;
-
-		data.clear();
-		data.ensureCapacity(width * height);
 	}
 
 	public int getHeight() {
@@ -159,29 +134,6 @@ public class GameObject {
 	public void setHeight(int height) {
 
 		this.height = height;
-
-		data.clear();
-		data.ensureCapacity(width * height);
-	}
-
-	public int getData(int x, int y) throws Exception {
-
-		if (!inBounds(x, y)) {
-			
-			throw new Exception("Error: Position " + x + ", " + y + " is out of bounds");
-		}
-
-		return data.get(y * width + x);
-	}
-
-	public void setData(int x, int y, int newData) throws Exception {
-
-		if (!inBounds(x, y)) {
-
-			throw new Exception("Error: Position " + x + ", " + y + " is out of bounds");
-		}
-
-		data.set(y * width + x, newData);
 	}
 
 	public GameObject getParent() {
@@ -193,5 +145,4 @@ public class GameObject {
 
 		parent = newParent;
 	}
-
 }
