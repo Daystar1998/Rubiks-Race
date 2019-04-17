@@ -16,6 +16,10 @@
 
 package engine.graphics;
 
+/**
+ * @author Matthew Day
+ */
+
 public class Color {
 
 	private int red, green, blue;
