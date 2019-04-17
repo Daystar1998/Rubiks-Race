@@ -44,4 +44,24 @@ public class GridBoard extends GameBoard {
 		// TODO: Decide whether to throw an exception or to resize the grid if it is the wrong size. With resizing, would need to decide how to handle shrinking it
 		this.grid = grid;
 	}
+	
+	public GameObject getCell(int row, int column){
+		
+		if(row < 0 || row >= rows || column < 0 || column >= columns){
+			
+			throw new IndexOutOfBoundsException("Cell: " + row + ", " + column + " is out of bounds");
+		}
+		
+		return grid.get(row * column);
+	}
+	
+	public void setCell(int row, int column, GameObject object){
+		
+		if(row < 0 || row >= rows || column < 0 || column >= columns){
+			
+			throw new IndexOutOfBoundsException("Cell: " + row + ", " + column + " is out of bounds");
+		}
+		
+		grid.set(row * column, object);
+	}
 }
