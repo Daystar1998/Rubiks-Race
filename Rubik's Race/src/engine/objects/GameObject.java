@@ -101,7 +101,7 @@ public class GameObject {
 		if(parent != null){
 			
 			// Get the child's position relative to the parent's position
-			result = position.add(parent.position);
+			result = position.add(parent.getPosition());
 		}else{
 			
 			result = new Vector2f(position);
