@@ -1,6 +1,6 @@
 package engine.objects;
 
-import engine.graphics.Display;
+import engine.graphics.ADisplay;
 import engine.math.Vector2f;
 import java.util.ArrayList;
 
@@ -65,7 +65,7 @@ public class GameObject {
 
 	public void update() {}
 
-	public void renderAll(Display display) {
+	public void renderAll(ADisplay display) {
 		
 		render(display);
 
@@ -75,7 +75,7 @@ public class GameObject {
 		}
 	}
 
-	public void render(Display display) {}
+	public void render(ADisplay display) {}
 
 	public void addChild(GameObject child) {
 

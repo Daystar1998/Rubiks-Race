@@ -20,11 +20,11 @@ package engine.graphics;
  * @author Matthew Day
  */
 
-public class Display {
+public abstract class ADisplay {
 
 	private int width, height;
 
-	public Display(int width, int height) {
+	public ADisplay(int width, int height) {
 		
 		this.width = width;
 		this.height = height;
