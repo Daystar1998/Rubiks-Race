@@ -1,9 +1,3 @@
-package engine.objects;
-
-import engine.graphics.ADisplay;
-import engine.math.Vector2f;
-import java.util.ArrayList;
-
 /*
  * Copyright 2019 Matthew Day.
  *
@@ -19,6 +13,12 @@ import java.util.ArrayList;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package engine.objects;
+
+import engine.graphics.ADisplay;
+import engine.math.Vector2f;
+import java.util.ArrayList;
 
 /**
  * @author Matthew Day

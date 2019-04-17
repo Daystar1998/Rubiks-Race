@@ -1,5 +1,3 @@
-package game;
-
 /*
  * Copyright 2019 Matthew Day.
  *
@@ -15,6 +13,8 @@ package game;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package game;
 
 /**
  * @author Matthew Day
