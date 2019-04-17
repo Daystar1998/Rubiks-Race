@@ -117,7 +117,7 @@ public class GameObject {
 		if(parent != null){
 			
 			// Get the child's scale relative to the parent's scale
-			result = position.mul(parent.scale);
+			result = position.mul(parent.getScale());
 		}else{
 			
 			result = new Vector2f(scale);
