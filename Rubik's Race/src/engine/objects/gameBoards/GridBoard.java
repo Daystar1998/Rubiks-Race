@@ -62,6 +62,17 @@ public class GridBoard extends GameBoard {
 			throw new IndexOutOfBoundsException("Cell: " + row + ", " + column + " is out of bounds");
 		}
 		
+		GameObject previousObject = grid.get(row * column);
+		
+		if(previousObject != null){
+			
+			this.removeChild(previousObject);
+		}
+		
+		this.addChild(object);
+		
+		// TODO: Modify the child's position and scale to place it in its slot on the grid
+		
 		grid.set(row * column, object);
 	}
 }
