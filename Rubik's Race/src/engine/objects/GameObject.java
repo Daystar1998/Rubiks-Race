@@ -78,7 +78,12 @@ public class GameObject {
 	public void render(ADisplay display) {}
 
 	public void addChild(GameObject child) {
-
+        
+        if(child.getParent() != null){
+            
+            child.getParent().removeChild(child);
+        }
+        
 		child.setParent(this);
 
 		children.add(child);
@@ -137,7 +142,7 @@ public class GameObject {
 	}
 
 	public void setParent(GameObject newParent) {
-
+        
 		parent = newParent;
 	}
 	
