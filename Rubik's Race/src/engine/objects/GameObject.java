@@ -55,9 +55,9 @@ public class GameObject {
 			child.updateAll();
 		}
 
-		for (int i = 0; i < removedChildren.size(); i++) {
+		for (GameObject child : removedChildren) {
 
-			children.remove(removedChildren.get(i));
+			children.remove(child);
 		}
 
 		removedChildren.clear();
