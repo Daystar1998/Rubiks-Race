@@ -31,21 +31,15 @@ public class GridBoard extends GameBoard {
 	private int rows, columns;
 
 	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns) {
-		
-		this(position, scale, rows, columns, new ArrayList<GameObject>(rows * columns));
-		
-		// TODO: Should the grid be filled with GameObjects by default or left empty?
-	}
-
-	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns, ArrayList<GameObject> grid) {
 
 		super(position, scale);
 
 		this.rows = rows;
 		this.columns = columns;
-		
-		// TODO: Decide whether to throw an exception or to resize the grid if it is the wrong size. With resizing, would need to decide how to handle shrinking it
-		this.grid = grid;
+
+		this.grid = new ArrayList<GameObject>(rows * columns);
+
+		// TODO: Should the grid be filled with GameObjects by default or left empty?
 	}
 	
 	public GameObject getCell(int row, int column){
