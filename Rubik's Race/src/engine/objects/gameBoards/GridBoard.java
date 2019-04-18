@@ -49,7 +49,7 @@ public class GridBoard extends GameBoard {
 			throw new IndexOutOfBoundsException("Cell: " + row + ", " + column + " is out of bounds");
 		}
 		
-		return grid.get(row * column);
+		return grid.get(row * this.columns + column);
 	}
 	
 	public void setCell(int row, int column, GameObject object){
@@ -59,17 +59,17 @@ public class GridBoard extends GameBoard {
 			throw new IndexOutOfBoundsException("Cell: " + row + ", " + column + " is out of bounds");
 		}
 		
-		GameObject previousObject = grid.get(row * column);
+		GameObject previousObject = grid.get(row * this.columns + column);
 		
 		if(previousObject != null){
 			
 			this.removeChild(previousObject);
 		}
+
+		// TODO: Consider placing a GameObject in the grid with the new object as its child. This would avoid requiring changing the original's data
 		
 		this.addChild(object);
 		
-		// TODO: Modify the child's position and scale to place it in its slot on the grid
-		
-		grid.set(row * column, object);
+		grid.set(row * this.columns + column, object);
 	}
 }
