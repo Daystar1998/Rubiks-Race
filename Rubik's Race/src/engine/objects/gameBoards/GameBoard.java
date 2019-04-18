@@ -16,6 +16,7 @@
 
 package engine.objects.gameBoards;
 
+import engine.math.Vector2f;
 import engine.objects.GameObject;
 
 /**
@@ -24,4 +25,8 @@ import engine.objects.GameObject;
 
 public class GameBoard extends GameObject {
 
+	public GameBoard(Vector2f position, Vector2f scale){
+
+		super(position, scale);
+	}
 }

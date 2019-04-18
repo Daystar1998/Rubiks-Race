@@ -16,6 +16,7 @@
 
 package engine.objects.gameBoards;
 
+import engine.math.Vector2f;
 import engine.objects.GameObject;
 import java.util.ArrayList;
 
@@ -29,15 +30,17 @@ public class GridBoard extends GameBoard {
 	
 	private int rows, columns;
 
-	public GridBoard(int rows, int columns) {
+	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns) {
 		
-		this(rows, columns, new ArrayList<GameObject>(rows * columns));
+		this(position, scale, rows, columns, new ArrayList<GameObject>(rows * columns));
 		
 		// TODO: Should the grid be filled with GameObjects by default or left empty?
 	}
 
-	public GridBoard(int rows, int columns, ArrayList<GameObject> grid) {
-		
+	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns, ArrayList<GameObject> grid) {
+
+		super(position, scale);
+
 		this.rows = rows;
 		this.columns = columns;
 		
