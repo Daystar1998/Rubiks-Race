@@ -23,7 +23,7 @@ import game.AGame;
  * @author Matthew Day
  */
 
-public class GameLoop {
+public class GameLoop implements Runnable {
 
 	private AGame game;
 	private IDisplay display;
@@ -34,6 +34,7 @@ public class GameLoop {
 		this.display = display;
 	}
 	
+	@Override
 	public void run(){
 		
 		
