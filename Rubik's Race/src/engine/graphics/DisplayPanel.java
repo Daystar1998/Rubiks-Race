@@ -36,6 +36,8 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void clear() {
 
+		Graphics g = image.getGraphics();
+		g.clearRect(0, 0, image.getWidth(), image.getHeight());
 	}
 
 	@Override
