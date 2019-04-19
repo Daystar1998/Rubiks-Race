@@ -16,6 +16,8 @@
 
 package game;
 
+import engine.graphics.IDisplay;
+
 /**
  * @author Matthew Day
  */
@@ -26,5 +28,5 @@ public abstract class AGame {
 
 	public abstract void update();
 
-	public abstract void render();
+	public abstract void render(IDisplay display);
 }
