@@ -16,9 +16,9 @@
 
 package engine.objects;
 
-import engine.graphics.ADisplay;
 import engine.math.Vector2f;
 import java.util.ArrayList;
+import engine.graphics.IDisplay;
 
 /**
  * @author Matthew Day
@@ -65,7 +65,7 @@ public class GameObject {
 
 	public void update() {}
 
-	public void renderAll(ADisplay display) {
+	public void renderAll(IDisplay display) {
 		
 		render(display);
 
@@ -75,7 +75,7 @@ public class GameObject {
 		}
 	}
 
-	public void render(ADisplay display) {}
+	public void render(IDisplay display) {}
 
 	public void addChild(GameObject child) {
         
