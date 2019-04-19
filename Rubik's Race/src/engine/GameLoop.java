@@ -56,6 +56,7 @@ public class GameLoop implements Runnable {
 			
 			// TODO: Implement support for frame rate limiting
 			game.render(display);
+			display.render();
 		}
 	}
 	
