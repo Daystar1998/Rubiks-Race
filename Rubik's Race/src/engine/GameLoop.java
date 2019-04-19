@@ -36,6 +36,15 @@ public class GameLoop implements Runnable {
 		this.display = display;
 	}
 	
+	public void start(){
+		
+		if(!running){
+			
+			running = true;
+			run();
+		}
+	}
+	
 	@Override
 	public void run(){
 		
@@ -47,6 +56,14 @@ public class GameLoop implements Runnable {
 			
 			// TODO: Implement support for framerate
 			game.render();
+		}
+	}
+	
+	public void stop(){
+		
+		if(running){
+			
+			running = false;
 		}
 	}
 }
