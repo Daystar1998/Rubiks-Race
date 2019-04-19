@@ -24,6 +24,8 @@ import game.AGame;
  */
 
 public class GameLoop implements Runnable {
+		
+	boolean running;
 
 	private AGame game;
 	private IDisplay display;
@@ -37,6 +39,14 @@ public class GameLoop implements Runnable {
 	@Override
 	public void run(){
 		
+		game.initialize();
 		
+		while(running){
+			
+			game.update();
+			
+			// TODO: Implement support for framerate
+			game.render();
+		}
 	}
 }
