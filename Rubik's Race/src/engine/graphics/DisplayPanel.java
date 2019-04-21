@@ -16,8 +16,10 @@
 package engine.graphics;
 
 import engine.math.Vector2f;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import javax.swing.JPanel;
 
 /**
@@ -26,11 +28,13 @@ import javax.swing.JPanel;
 public class DisplayPanel extends JPanel implements IDisplay {
 
 	private BufferedImage image;
+	private int[] pixels;
 
 	public DisplayPanel(int width, int height) {
 
 		image = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	}
 
 	@Override
