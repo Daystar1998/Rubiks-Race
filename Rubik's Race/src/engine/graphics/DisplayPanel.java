@@ -49,6 +49,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void drawPixel(Vector2f position, Color color) {
 
+		pixels[(int)position.y * image.getWidth() + (int)position.x] = color.getRGB();
 	}
 
 	@Override
