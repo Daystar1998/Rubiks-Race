@@ -17,7 +17,7 @@ package engine.graphics;
 
 import engine.math.Vector2f;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import javax.swing.JPanel;

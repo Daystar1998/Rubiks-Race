@@ -18,6 +18,8 @@ package engine.graphics;
 
 import engine.math.Vector2f;
 
+import java.awt.*;
+
 /**
  * @author Matthew Day
  */
