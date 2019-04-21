@@ -20,6 +20,7 @@ import engine.math.Vector2f;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Arrays;
 import javax.swing.JPanel;
 
 /**
@@ -42,8 +43,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void clear() {
 
-		Graphics g = image.getGraphics();
-		g.clearRect(0, 0, image.getWidth(), image.getHeight());
+		Arrays.fill(pixels, 0);
 	}
 
 	@Override
