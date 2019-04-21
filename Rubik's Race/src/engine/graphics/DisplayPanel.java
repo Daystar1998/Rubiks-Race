@@ -33,7 +33,13 @@ public class DisplayPanel extends JPanel implements IDisplay {
 
 	public DisplayPanel(int width, int height) {
 
-		super.setBackground(java.awt.Color.BLACK);
+		Dimension d = new Dimension(width, height);
+
+		super.setPreferredSize(d);
+		super.setMinimumSize(d);
+		super.setMaximumSize(d);
+
+		super.setBackground(Color.BLACK);
 
 		image = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
