@@ -58,12 +58,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void render() {
 
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);
+		Graphics g = super.getGraphics();
 		g.drawImage(image, 0, 0, null);
 	}
 }
