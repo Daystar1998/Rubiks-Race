@@ -22,41 +22,41 @@ package engine.graphics;
 
 public class Color {
 
-	private int red, green, blue;
+	private char red, green, blue;
 
-	public Color(int red, int green, int blue) {
+	public Color(char red, char green, char blue) {
 
 		this.red = red;
 		this.green = green;
 		this.blue = blue;
 	}
 
-	public int getRed() {
+	public char getRed() {
 
 		return red;
 	}
 
-	public void setRed(int red) {
+	public void setRed(char red) {
 
 		this.red = red;
 	}
 
-	public int getGreen() {
+	public char getGreen() {
 
 		return green;
 	}
 
-	public void setGreen(int green) {
+	public void setGreen(char green) {
 
 		this.green = green;
 	}
 
-	public int getBlue() {
+	public char getBlue() {
 
 		return blue;
 	}
 
-	public void setBlue(int blue) {
+	public void setBlue(char blue) {
 
 		this.blue = blue;
 	}
