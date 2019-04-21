@@ -36,7 +36,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 		super.setBackground(java.awt.Color.BLACK);
 
 		image = new BufferedImage(width, height,
-				BufferedImage.TYPE_INT_RGB);
+				BufferedImage.TYPE_INT_ARGB);
 		pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	}
 
@@ -49,7 +49,10 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void drawPixel(Vector2f position, Color color) {
 
-		pixels[(int) position.y * image.getWidth() + (int) position.x] = color.getRGB();
+		if(position.y >= 0 && position.y < image.getHeight() && position.x >= 0 && position.x < image.getWidth()) {
+
+			pixels[(int) position.y * image.getWidth() + (int) position.x] = color.getRGB();
+		}
 	}
 
 	@Override
@@ -62,6 +65,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 			Modified by Matthew Day to convert it to Java, use Vector2f, and use the drawPixel method
 	 	*/
 
+		// TODO: Consider putting in class scope
 		Vector2f temp = new Vector2f();
 
 		//y = mx + b
