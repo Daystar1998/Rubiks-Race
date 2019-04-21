@@ -26,13 +26,13 @@ import java.awt.*;
 
 public interface IDisplay {
 
-	public void clear();
+	void clear();
 
-	public void drawPixel(Vector2f position, Color color);
+	void drawPixel(Vector2f position, Color color);
 
-	public void drawLine(Vector2f start, Vector2f end, Color color);
+	void drawLine(Vector2f start, Vector2f end, Color color);
 
-	public void drawTriangle(Vector2f position1, Vector2f position2, Vector2f position3, Color color);
+	void drawTriangle(Vector2f position1, Vector2f position2, Vector2f position3, Color color);
 
-	public void render();
+	void render();
 }
