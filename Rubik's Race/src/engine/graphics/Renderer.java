@@ -29,6 +29,11 @@ public class Renderer {
 
 		this.display = display;
 	}
+	
+	public void clear(){
+		
+		display.clear();
+	}
 
 	public void render(Model model, Vector2f position, Vector2f scale, Color color) {
 
