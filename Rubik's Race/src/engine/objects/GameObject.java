@@ -19,6 +19,7 @@ package engine.objects;
 import engine.math.Vector2f;
 import java.util.ArrayList;
 import engine.graphics.IDisplay;
+import engine.graphics.Renderer;
 
 /**
  * @author Matthew Day
@@ -65,17 +66,17 @@ public class GameObject {
 
 	public void update() {}
 
-	public void renderAll(IDisplay display) {
+	public void renderAll(Renderer renderer) {
 		
-		render(display);
+		render(renderer);
 
 		for (GameObject child : children) {
 
-			child.renderAll(display);
+			child.renderAll(renderer);
 		}
 	}
 
-	public void render(IDisplay display) {}
+	public void render(Renderer renderer) {}
 
 	public void addChild(GameObject child) {
         

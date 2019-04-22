@@ -17,6 +17,7 @@
 package engine;
 
 import engine.graphics.IDisplay;
+import engine.graphics.Renderer;
 import game.AGame;
 
 /**
@@ -28,12 +29,12 @@ public class GameLoop implements Runnable {
 	boolean running;
 
 	private AGame game;
-	private IDisplay display;
+	private Renderer renderer;
 
-	public GameLoop(AGame game, IDisplay display) {
+	public GameLoop(AGame game, Renderer renderer) {
 		
 		this.game = game;
-		this.display = display;
+		this.renderer = renderer;
 	}
 	
 	public void start(){
@@ -55,9 +56,9 @@ public class GameLoop implements Runnable {
 			game.update();
 			
 			// TODO: Implement support for frame rate limiting
-			display.clear();
-			game.render(display);
-			display.render();
+			renderer.clear();
+			game.render(renderer);
+			renderer.render();
 		}
 	}
 	
