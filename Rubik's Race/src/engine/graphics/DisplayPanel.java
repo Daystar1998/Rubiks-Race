@@ -57,7 +57,11 @@ public class DisplayPanel extends JPanel implements IDisplay {
 
 		if (position.y >= 0 && position.y < image.getHeight() && position.x >= 0 && position.x < image.getWidth()) {
 
-			pixels[(int) position.y * image.getWidth() + (int) position.x] = color.getRGB();
+			// TODO: Support color blending
+			if(color.getAlpha() != 0) {
+				
+				pixels[(int) position.y * image.getWidth() + (int) position.x] = color.getRGB();
+			}
 		}
 	}
 
