@@ -17,6 +17,7 @@ package engine.graphics;
 
 import engine.math.Vector2f;
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * @author Matthew Day
@@ -36,11 +37,28 @@ public class Renderer {
 	}
 
 	public void render(Model model, Vector2f position, Vector2f scale, Color color) {
-
+		
+		ArrayList<Vector2f> vertices = model.getVertices();
+		ArrayList<Integer> indices = model.getIndices();
+		
+		for(int i = 0; i < model.getIndices().size(); i += 3){
+			
+			Vector2f position1 = vertices.get(indices.get(i));
+			Vector2f position2 = vertices.get(indices.get(i + 1));
+			Vector2f position3 = vertices.get(indices.get(i + 2));
+			
+			// TODO: Use a transformation matrix for this
+			position1 = position1.mul(scale).add(position);
+			position2 = position2.mul(scale).add(position);
+			position3 = position3.mul(scale).add(position);
+			
+			display.drawTriangle(position1, position2, position3, color);
+		}
 	}
 	
 	public void render(){
 		
+		display.render();
 	}
 
 	// TODO: Quit exposing this after proper font rendering support is added
