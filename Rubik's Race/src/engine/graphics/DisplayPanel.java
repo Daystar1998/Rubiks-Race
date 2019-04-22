@@ -55,7 +55,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void drawPixel(Vector2f position, Color color) {
 
-		if(position.y >= 0 && position.y < image.getHeight() && position.x >= 0 && position.x < image.getWidth()) {
+		if (position.y >= 0 && position.y < image.getHeight() && position.x >= 0 && position.x < image.getWidth()) {
 
 			pixels[(int) position.y * image.getWidth() + (int) position.x] = color.getRGB();
 		}
@@ -123,7 +123,131 @@ public class DisplayPanel extends JPanel implements IDisplay {
 
 	@Override
 	public void drawTriangle(Vector2f position1, Vector2f position2, Vector2f position3, Color color) {
-
+		
+		int minY = (int) Math.min(Math.min(position1.getY(), position2.getY()), position3.getY());
+		int maxY = (int) Math.max(Math.max(position1.getY(), position2.getY()), position3.getY());
+		
+		// Ensure part of the triangle is on screen
+		if(minY < getHeight() && maxY >= 0) {
+			
+			if(minY < 0){
+				
+				minY = 0;
+			}
+			
+			if(maxY >= getHeight()){
+				
+				maxY = getHeight();
+			}
+			
+			Vector2f temp = new Vector2f();
+			
+			int minX, maxX;
+			
+			for (int y = minY; y <= maxY; y++){
+				
+				boolean intersectsLine1 = false;
+			
+				if (lineIntersectsOnY(position1, position2, y, temp)) {
+					
+					intersectsLine1 = true;
+				} else {
+					
+					lineIntersectsOnY(position2, position3, y, temp);
+				}
+				
+				minX = (int) temp.getX();
+				
+				if (temp.getY() >= 0){
+					
+					maxX = (int) temp.getY();
+				} else {
+					
+					maxX = (int) temp.getX();
+				}
+				
+				if (intersectsLine1){
+					
+					lineIntersectsOnY(position1, position3, y, temp);
+					
+					// Temp will not have changed if it didn't intersect
+					minX = (int) Math.min(temp.getX(), minX);
+					
+					if (temp.getY() >= 0){
+						
+						maxX = (int) Math.max(temp.getY(), maxX);
+					} else {
+						
+						maxX = (int) Math.max(temp.getX(), maxX);
+					}
+					
+					lineIntersectsOnY(position2, position3, y, temp);
+				} else{
+					
+					lineIntersectsOnY(position1, position3, y, temp);
+				}
+				
+				minX = (int) Math.min(temp.getX(), minX);
+				
+				if (temp.getY() >= 0){
+					
+					maxX = (int) Math.max(temp.getY(), maxX);
+				} else {
+					
+					maxX = (int) Math.max(temp.getX(), maxX);
+				}
+				
+				drawLine(new Vector2f(minX, y), new Vector2f(maxX, y), color);
+			}
+		}
+	}
+	
+	private boolean lineIntersectsOnY(Vector2f lineStart, Vector2f lineEnd, int y, Vector2f oIntersection) {
+		
+		boolean result = false;
+		
+		if((y < (int) lineStart.y && y < (int) lineEnd.y) || (y > (int) lineEnd.y && y > (int) lineStart.y)) {
+			
+			// Do nothing
+			// Line is horizontal
+		}else if ((int) lineStart.y == (int) lineEnd.y && (int) lineStart.y == y) {
+			
+			oIntersection.x = Math.min(lineStart.x, lineEnd.x);
+			oIntersection.y = Math.max(lineStart.x, lineEnd.x);
+			
+			result = true;
+		} else {
+			
+			// Flag showing that this value should not be used
+			oIntersection.y = -1;
+			
+			double m;
+			double b;
+			double x;
+			
+			// Line is vertical
+			if (lineStart.x == lineEnd.x) {
+				
+				x = lineStart.x;
+			} else {
+				
+				m = (double) (lineEnd.y - lineStart.y) / (double) (lineEnd.x - lineStart.x);
+				
+				b = lineStart.y - (lineStart.x * m);
+				
+				x = Math.round((y - b) / m);
+			}
+			
+			// Check that the x value is in range regardless of the order the points of the line are in
+			if ((x >= lineStart.x && x <= lineEnd.x) || (x >= lineEnd.x && x <= lineStart.x)) {
+				
+				oIntersection.x = (int) Math.floor(x);
+				
+				result = true;
+			}
+		}
+		
+		return result;
 	}
 
 	@Override
