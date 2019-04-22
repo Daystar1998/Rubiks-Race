@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class GridBoard extends GameBoard {
 
-	private ArrayList<GameObject> grid;
+	protected ArrayList<GameObject> grid;
 	
 	private int rows, columns;
 
