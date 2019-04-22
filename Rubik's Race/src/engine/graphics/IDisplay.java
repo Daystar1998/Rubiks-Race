@@ -33,8 +33,6 @@ public interface IDisplay {
 	void drawLine(Vector2f start, Vector2f end, Color color);
 
 	void drawTriangle(Vector2f position1, Vector2f position2, Vector2f position3, Color color);
-	
-	void drawModel(Model model, Color color);
 
 	void render();
 }

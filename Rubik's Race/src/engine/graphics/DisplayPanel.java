@@ -249,12 +249,6 @@ public class DisplayPanel extends JPanel implements IDisplay {
 		
 		return result;
 	}
-	
-	@Override
-	public void drawModel(Model model, Color color) {
-	
-	
-	}
 
 	@Override
 	public void render() {
