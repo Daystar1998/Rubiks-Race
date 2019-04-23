@@ -49,7 +49,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void clear() {
 
-		Arrays.fill(pixels, 0);
+		Arrays.fill(pixels, 0xFF000000);
 	}
 
 	@Override
