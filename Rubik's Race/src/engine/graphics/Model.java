@@ -26,12 +26,18 @@ import java.util.HashMap;
  */
 public class Model {
 	
-	private static HashMap<String, Model> models = new HashMap<String, Model>();
+	private static HashMap<String, Model> models;
+	
+	static {
+		
+		models = new HashMap<String, Model>();
+		initializeDefaultModels();
+	}
 	
 	private ArrayList<Vector2f> vertices;
 	private ArrayList<Integer> indices;
 	
-	public Model(String label){
+	public Model(String label) {
 		
 		Model model = models.get(label);
 		
@@ -41,7 +47,7 @@ public class Model {
 			c. Implement a default model
 		 */
 		
-		if(model == null) {
+		if (model == null) {
 			
 			// TODO: Implement a standard logging system
 			System.err.println("No model named '" + label + "' was found");
@@ -78,5 +84,26 @@ public class Model {
 	public void setIndices(ArrayList<Integer> indices) {
 		
 		this.indices = indices;
+	}
+	
+	private static void initializeDefaultModels() {
+		
+		ArrayList<Vector2f> vertices = new ArrayList<Vector2f>();
+		
+		vertices.add(new Vector2f(0, 0));
+		vertices.add(new Vector2f(0, 1));
+		vertices.add(new Vector2f(1, 1));
+		vertices.add(new Vector2f(1, 0));
+		
+		ArrayList<Integer> indices = new ArrayList<Integer>();
+		
+		indices.add(0);
+		indices.add(1);
+		indices.add(2);
+		indices.add(0);
+		indices.add(2);
+		indices.add(3);
+		
+		new Model("rectangle", vertices, indices);
 	}
 }
