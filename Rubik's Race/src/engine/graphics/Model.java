@@ -19,19 +19,45 @@ package engine.graphics;
 import engine.math.Vector2f;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Matthew Day
  */
 public class Model {
 	
+	private static HashMap<String, Model> models = new HashMap<String, Model>();
+	
 	private ArrayList<Vector2f> vertices;
 	private ArrayList<Integer> indices;
 	
-	public Model(ArrayList<Vector2f> vertices, ArrayList<Integer> indices) {
+	public Model(String label){
+		
+		Model model = models.get(label);
+		
+		/* TODO: Decide response for trying to use a nonexistent model
+			a. Throw an exception
+			b. Exit the program with error (current)
+			c. Implement a default model
+		 */
+		
+		if(model == null) {
+			
+			// TODO: Implement a standard logging system
+			System.err.println("No model named '" + label + "' was found");
+			System.exit(1);
+		}
+		
+		this.vertices = model.vertices;
+		this.indices = model.indices;
+	}
+	
+	public Model(String label, ArrayList<Vector2f> vertices, ArrayList<Integer> indices) {
 		
 		this.vertices = vertices;
 		this.indices = indices;
+		
+		models.put(label, this);
 	}
 	
 	public ArrayList<Vector2f> getVertices() {
