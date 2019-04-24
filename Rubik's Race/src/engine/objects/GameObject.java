@@ -18,7 +18,6 @@ package engine.objects;
 
 import engine.math.Vector2f;
 import java.util.ArrayList;
-import engine.graphics.IDisplay;
 import engine.graphics.Renderer;
 
 /**
@@ -96,6 +95,11 @@ public class GameObject {
 	public void removeChild(GameObject child) {
 
 		removedChildren.add(child);
+	}
+	
+	public void move(Vector2f distance){
+		
+		position = position.add(distance);
 	}
 
 	public void setPosition(Vector2f position) {
