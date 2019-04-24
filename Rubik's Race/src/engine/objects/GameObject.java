@@ -43,6 +43,9 @@ public class GameObject {
 
 	public GameObject(Vector2f position, Vector2f scale) {
 
+		this.children = new ArrayList<GameObject>();
+		this.removedChildren = new ArrayList<GameObject>();
+		
 		this.position = position;
 		this.scale = scale;
 	}
@@ -143,7 +146,7 @@ public class GameObject {
 	}
 
 	public void setParent(GameObject newParent) {
-        
+  
 		parent = newParent;
 	}
 	
