@@ -63,6 +63,10 @@ public class GridBoard extends GameBoard {
 	@Override
 	public void render(Renderer renderer) {
 	
+		if(backColor.getAlpha() != 0){
+			
+			renderer.render(backModel, this.getPosition(), this.getScale(), backColor);
+		}
 	}
 	
 	public GameObject getCell(int row, int column){
