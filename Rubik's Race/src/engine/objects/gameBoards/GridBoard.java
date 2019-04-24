@@ -112,8 +112,8 @@ public class GridBoard extends GameBoard {
 		float width = scale.x / columns;
 		float height = scale.y / rows;
 		
-		object.setPosition(new Vector2f(width * column, height * row));
-		object.setScale(new Vector2f(width / scale.x, height / scale.y));
+		object.setPosition(new Vector2f(width * column + (lineWidth / 2), height * row + (lineWidth / 2)));
+		object.setScale(new Vector2f((width - lineWidth) / scale.x, (height - lineWidth) / scale.y));
 		
 		grid.set(row * this.columns + column, object);
 	}
