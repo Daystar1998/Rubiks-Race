@@ -35,14 +35,21 @@ public class GridBoard extends GameBoard {
 	protected ArrayList<GameObject> grid;
 	
 	private int rows, columns;
+	private float lineWidth;
+	
 	private Color backColor;
 	
 	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns){
 		
-		this(position, scale, rows, columns, new Color(0, 0, 0, 0));
+		this(position, scale, rows, columns, 1);
+	}
+	
+	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns, float lineWidth){
+		
+		this(position, scale, rows, columns, lineWidth, new Color(0, 0, 0, 0));
 	}
 
-	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns, Color backColor) {
+	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns, float lineWidth, Color backColor) {
 
 		super(position, scale);
 
@@ -53,6 +60,8 @@ public class GridBoard extends GameBoard {
 		
 		this.rows = rows;
 		this.columns = columns;
+		this.lineWidth = lineWidth;
+		
 		this.backColor = backColor;
 
 		this.grid = new ArrayList<GameObject>(rows * columns);
