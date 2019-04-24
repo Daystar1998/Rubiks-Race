@@ -42,9 +42,10 @@ public class GridBoard extends GameBoard {
 	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns, Color backColor) {
 
 		super(position, scale);
-
+		
 		this.rows = rows;
 		this.columns = columns;
+		this.backColor = backColor;
 
 		this.grid = new ArrayList<GameObject>(rows * columns);
 
@@ -53,7 +54,6 @@ public class GridBoard extends GameBoard {
 	
 	@Override
 	public void render(Renderer renderer) {
-	
 	
 	}
 	
