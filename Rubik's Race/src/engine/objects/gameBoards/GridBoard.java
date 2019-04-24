@@ -56,6 +56,11 @@ public class GridBoard extends GameBoard {
 		this.backColor = backColor;
 
 		this.grid = new ArrayList<GameObject>(rows * columns);
+		
+		for(int i = 0; i < rows * columns; i++){
+			
+			grid.add(new GameObject());
+		}
 
 		// TODO: Should the grid be filled with GameObjects by default or left empty?
 	}
