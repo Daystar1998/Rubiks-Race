@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class GridBoard extends GameBoard {
 	
 	private static Model backModel;
-
+	
 	protected ArrayList<GameObject> grid;
 	
 	private int rows, columns;
@@ -116,5 +116,12 @@ public class GridBoard extends GameBoard {
 		object.setScale(new Vector2f((width - lineWidth) / scale.x, (height - lineWidth) / scale.y));
 		
 		grid.set(row * this.columns + column, object);
+	}
+	
+	public Vector2f getCellPositionAsAbsoluteCoordinate(int row, int column){
+		
+		Vector2f positionWithinGrid = this.getScale().div(new Vector2f(columns, rows)).mul(new Vector2f(column, row));
+		
+		return this.getPosition().add(positionWithinGrid);
 	}
 }
