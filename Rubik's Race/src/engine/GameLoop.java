@@ -75,7 +75,7 @@ public class GameLoop implements Runnable {
 				
 				unprocessedTime -= frameTime;
 				
-				game.update();
+				game.update(frameTime);
 			}
 			
 			if(renderFrame) {

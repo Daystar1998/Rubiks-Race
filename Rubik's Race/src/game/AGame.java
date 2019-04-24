@@ -34,7 +34,7 @@ public abstract class AGame {
 	
 	public abstract void initialize();
 	
-	public abstract void update();
+	public abstract void update(double frameTime);
 	
 	public abstract void render(Renderer renderer);
 	

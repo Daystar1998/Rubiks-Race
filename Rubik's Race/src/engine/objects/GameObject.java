@@ -49,13 +49,13 @@ public class GameObject {
 		this.scale = scale;
 	}
 	
-	public void updateAll(){
+	public void updateAll(double frameTime){
 		
-		update();
+		update(frameTime);
 		
 		for (GameObject child : children) {
 
-			child.updateAll();
+			child.updateAll(frameTime);
 		}
 
 		for (GameObject child : removedChildren) {
@@ -66,7 +66,7 @@ public class GameObject {
 		removedChildren.clear();
 	}
 
-	public void update() {}
+	public void update(double frameTime) {}
 
 	public void renderAll(Renderer renderer) {
 		
