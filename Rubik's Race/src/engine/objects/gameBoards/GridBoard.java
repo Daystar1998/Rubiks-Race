@@ -16,6 +16,7 @@
 
 package engine.objects.gameBoards;
 
+import engine.graphics.Model;
 import engine.graphics.Renderer;
 import engine.math.Vector2f;
 import engine.objects.GameObject;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
  */
 
 public class GridBoard extends GameBoard {
+	
+	private static Model backModel;
 
 	protected ArrayList<GameObject> grid;
 	
@@ -42,6 +45,11 @@ public class GridBoard extends GameBoard {
 	public GridBoard(Vector2f position, Vector2f scale, int rows, int columns, Color backColor) {
 
 		super(position, scale);
+
+		if(backModel == null){
+			
+			backModel = new Model("rectangle");
+		}
 		
 		this.rows = rows;
 		this.columns = columns;
@@ -81,8 +89,6 @@ public class GridBoard extends GameBoard {
 			this.removeChild(previousObject);
 		}
 
-		// TODO: Consider placing a GameObject in the grid with the new object as its child. This would avoid requiring changing the original's data
-		
 		this.addChild(object);
 		
 		grid.set(row * this.columns + column, object);
