@@ -124,4 +124,14 @@ public class GridBoard extends GameBoard {
 		
 		return this.getPosition().add(positionWithinGrid);
 	}
+	
+	public int getRows(){
+		
+		return rows;
+	}
+	
+	public int getColumns(){
+		
+		return columns;
+	}
 }
