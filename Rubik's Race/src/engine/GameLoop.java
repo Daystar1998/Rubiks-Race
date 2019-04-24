@@ -16,7 +16,6 @@
 
 package engine;
 
-import engine.graphics.IDisplay;
 import engine.graphics.Renderer;
 import game.AGame;
 
@@ -25,16 +24,22 @@ import game.AGame;
  */
 
 public class GameLoop implements Runnable {
-		
-	boolean running;
+	
+	private int maxFPS;
+	private double frameTime;
+	
+	private boolean running;
 
 	private AGame game;
 	private Renderer renderer;
 
-	public GameLoop(AGame game, Renderer renderer) {
+	public GameLoop(AGame game, Renderer renderer, int maxFPS) {
 		
 		this.game = game;
 		this.renderer = renderer;
+		
+		this.maxFPS = maxFPS;
+		this.frameTime = 1.0 / maxFPS;
 	}
 	
 	public void start(){
@@ -51,14 +56,36 @@ public class GameLoop implements Runnable {
 		
 		game.initialize();
 		
+		boolean renderFrame = false;
+		
+		long lastTime = System.nanoTime();
+		double unprocessedTime = 0;
+		
 		while(running){
 			
-			game.update();
+			long startTime = System.nanoTime();
+			long passedTime = startTime - lastTime;
+			lastTime = startTime;
 			
-			// TODO: Implement support for frame rate limiting
-			renderer.clear();
-			game.render(renderer);
-			renderer.render();
+			unprocessedTime += passedTime / 1000000000D;
+			
+			while(unprocessedTime > frameTime) {
+				
+				renderFrame = true;
+				
+				unprocessedTime -= frameTime;
+				
+				game.update();
+			}
+			
+			if(renderFrame) {
+				
+				renderer.clear();
+				game.render(renderer);
+				renderer.render();
+				
+				renderFrame = false;
+			}
 		}
 	}
 	
