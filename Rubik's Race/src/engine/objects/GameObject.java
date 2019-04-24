@@ -95,7 +95,7 @@ public class GameObject {
 		removedChildren.add(child);
 	}
 
-	void setPosition(Vector2f position) {
+	public void setPosition(Vector2f position) {
 
 		this.position = position;
 	}
