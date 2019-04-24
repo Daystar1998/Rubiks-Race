@@ -70,8 +70,6 @@ public class GridBoard extends GameBoard {
 			
 			grid.add(new GameObject());
 		}
-
-		// TODO: Should the grid be filled with GameObjects by default or left empty?
 	}
 	
 	@Override
