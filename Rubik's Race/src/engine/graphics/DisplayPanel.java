@@ -28,7 +28,8 @@ import javax.swing.JPanel;
  */
 public class DisplayPanel extends JPanel implements IDisplay {
 
-	private BufferedImage image;
+	private BufferedImage buffer1;
+	private BufferedImage buffer2;
 	private int[] pixels;
 	
 	private Color clearColor;
@@ -45,9 +46,11 @@ public class DisplayPanel extends JPanel implements IDisplay {
 
 		super.setBackground(clearColor);
 
-		image = new BufferedImage(width, height,
+		buffer1 = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
-		pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+		buffer2 = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_ARGB);
+		pixels = ((DataBufferInt) buffer1.getRaster().getDataBuffer()).getData();
 	}
 
 	@Override
@@ -59,12 +62,12 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void drawPixel(Vector2f position, Color color) {
 
-		if (position.y >= 0 && position.y < image.getHeight() && position.x >= 0 && position.x < image.getWidth()) {
+		if (position.y >= 0 && position.y < buffer1.getHeight() && position.x >= 0 && position.x < buffer1.getWidth()) {
 
 			// TODO: Support color blending
 			if(color.getAlpha() != 0) {
 				
-				pixels[(int) position.y * image.getWidth() + (int) position.x] = color.getRGB();
+				pixels[(int) position.y * buffer1.getWidth() + (int) position.x] = color.getRGB();
 			}
 		}
 	}
@@ -261,8 +264,11 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void render() {
 
-		Graphics g = super.getGraphics();
-		g.drawImage(image, 0, 0, null);
+		Graphics g = buffer2.getGraphics();
+		g.drawImage(buffer1, 0, 0, null);
+		
+		g = super.getGraphics();
+		g.drawImage(buffer2, 0, 0, this);
 	}
 
 	public Color getClearColor() {
