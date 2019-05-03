@@ -124,6 +124,31 @@ public class GridBoard extends GameBoard {
 		grid.set(row * this.columns + column, object);
 	}
 	
+	public void rotate() {
+		
+		GameObject[] rotatedGrid = new GameObject[this.getRows() * this.getColumns()];
+	
+		for(int row = 0; row < this.getRows(); row++){
+			
+			for(int column = 0; column < this.getColumns(); column++){
+			
+				GameObject object = this.getCell(row, column);
+				
+				object.setPosition(getCellPositionAsAbsoluteCoordinate(column, this.getColumns() - row - 1).sub(this.getPosition()));
+				
+				rotatedGrid[column * this.getColumns() + (this.getColumns() - row - 1)] = object;
+			}
+		}
+		
+		for(int row = 0; row < this.getRows(); row++){
+			
+			for(int column = 0; column < this.getColumns(); column++){
+				
+				grid.set(row * this.getColumns() + column, rotatedGrid[row * this.getColumns() + column]);
+			}
+		}
+	}
+	
 	public Vector2f getCellPositionAsAbsoluteCoordinate(int row, int column){
 		
 		Vector2f positionWithinGrid = this.getScale().div(new Vector2f(columns, rows)).mul(new Vector2f(column, row));
