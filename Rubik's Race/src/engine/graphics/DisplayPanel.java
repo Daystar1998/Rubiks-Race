@@ -30,8 +30,12 @@ public class DisplayPanel extends JPanel implements IDisplay {
 
 	private BufferedImage image;
 	private int[] pixels;
+	
+	private Color clearColor;
 
-	public DisplayPanel(int width, int height) {
+	public DisplayPanel(int width, int height, Color clearColor) {
+		
+		this.clearColor = clearColor;
 
 		Dimension d = new Dimension(width, height);
 
@@ -39,7 +43,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 		super.setMinimumSize(d);
 		super.setMaximumSize(d);
 
-		super.setBackground(Color.BLACK);
+		super.setBackground(clearColor);
 
 		image = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
@@ -49,7 +53,7 @@ public class DisplayPanel extends JPanel implements IDisplay {
 	@Override
 	public void clear() {
 
-		Arrays.fill(pixels, 0xFF000000);
+		Arrays.fill(pixels, clearColor.getRGB());
 	}
 
 	@Override
@@ -259,5 +263,15 @@ public class DisplayPanel extends JPanel implements IDisplay {
 
 		Graphics g = super.getGraphics();
 		g.drawImage(image, 0, 0, null);
+	}
+
+	public Color getClearColor() {
+		
+		return clearColor;
+	}
+
+	public void setClearColor(Color clearColor) {
+		
+		this.clearColor = clearColor;
 	}
 }
