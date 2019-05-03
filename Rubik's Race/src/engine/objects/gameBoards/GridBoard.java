@@ -100,21 +100,27 @@ public class GridBoard extends GameBoard {
 		
 		GameObject previousObject = grid.get(row * this.columns + column);
 		
-		if(previousObject != null){
+		if(previousObject != null && previousObject != object){
 			
 			this.removeChild(previousObject);
+			
+			if(object != null){
+				
+				this.addChild(object);
+			}
+		}
+		
+		if (object != null) {
+
+			Vector2f scale = this.getScale();
+
+			float width = scale.x / columns;
+			float height = scale.y / rows;
+
+			object.setPosition(new Vector2f(width * column + (lineWidth / 2f), height * row + (lineWidth / 2f)));
+			object.setScale(new Vector2f((width - lineWidth) / scale.x, (height - lineWidth) / scale.y));
 		}
 
-		this.addChild(object);
-		
-		Vector2f scale = this.getScale();
-		
-		float width = scale.x / columns;
-		float height = scale.y / rows;
-		
-		object.setPosition(new Vector2f(width * column + (lineWidth / 2), height * row + (lineWidth / 2)));
-		object.setScale(new Vector2f((width - lineWidth) / scale.x, (height - lineWidth) / scale.y));
-		
 		grid.set(row * this.columns + column, object);
 	}
 	
