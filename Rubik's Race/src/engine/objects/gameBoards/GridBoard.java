@@ -156,6 +156,24 @@ public class GridBoard extends GameBoard {
 		return this.getPosition().add(positionWithinGrid);
 	}
 	
+	public Vector2f getAbsoluteCoordinateAsCellPosition(Vector2f position){
+		
+		position = position.sub(this.getPosition());
+		
+		Vector2f scale = this.getScale();
+
+		float width = scale.x / columns;
+		float height = scale.y / rows;
+		
+		int rowCount;
+		int columnCount;
+			
+		for (rowCount = 0; (height * (rowCount + 1)) < position.getY(); rowCount++);
+		for (columnCount = 0; (width * (columnCount + 1)) < position.getX(); columnCount++);
+		
+		return new Vector2f(rowCount, columnCount);
+	}
+	
 	public int getRows(){
 		
 		return rows;
