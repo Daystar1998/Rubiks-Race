@@ -45,6 +45,8 @@ public class SliderGrid extends GridBoard {
 		}
 	}
 	
+	boolean processingMoves = false;
+	
 	protected ArrayList<MovingObject> movingCells;
 	
 	public SliderGrid(Vector2f position, Vector2f scale, int rows, int columns) {
@@ -62,5 +64,66 @@ public class SliderGrid extends GridBoard {
 		super(position, scale, rows, columns, lineWidth, backColor);
 		
 		this.movingCells = new ArrayList<MovingObject>();
+	}
+	
+	@Override
+	public void update(double frameTime) {
+		
+		ArrayList<MovingObject> completedMove = new ArrayList<MovingObject>();
+		
+		for (MovingObject move : movingCells) {
+			
+			grid.set((int) move.destination.getX() * super.getColumns() + (int) move.destination.getY(), move.object);
+			
+			long timeTaken = System.currentTimeMillis() - move.startTime;
+			
+			double percentageMove;
+			
+			if (move.totalTime > 0) {
+				
+				percentageMove = timeTaken / move.totalTime;
+			} else {
+				
+				percentageMove = 1;
+			}
+			
+			if (percentageMove > 1.0) {
+				
+				move.object.setPosition(super.getCellPositionAsAbsoluteCoordinate((int) move.destination.getX(), (int) move.destination.getY()).sub(this.getPosition()));
+				completedMove.add(move);
+			} else {
+				
+				Vector2f totalDistance = super.getCellPositionAsAbsoluteCoordinate((int) move.destination.getX(), (int) move.destination.getY()).sub(super.getCellPositionAsAbsoluteCoordinate((int) move.start.getX(), (int) move.start.getY()));
+				
+				Vector2f moveAmount = totalDistance.mul(new Vector2f((float) percentageMove, (float) percentageMove)).mul(new Vector2f((float) frameTime, (float) frameTime));
+				
+				move.object.move(moveAmount);
+			}
+		}
+		
+		for (MovingObject move : completedMove) {
+			
+			movingCells.remove(move);
+		}
+		
+		if (movingCells.size() > 0) {
+			
+			processingMoves = true;
+		} else {
+			
+			processingMoves = false;
+		}
+	}
+	
+	public void move(int row1, int column1, int row2, int column2, long totalTimeMillis) {
+		
+		long currentTime = System.currentTimeMillis();
+		
+		movingCells.add(new MovingObject(grid.get(row1 * super.getColumns() + column1), new Vector2f(row1, column1), new Vector2f(row2, column2), currentTime, totalTimeMillis));
+	}
+	
+	public boolean isProcessingMoves() {
+		
+		return processingMoves;
 	}
 }
