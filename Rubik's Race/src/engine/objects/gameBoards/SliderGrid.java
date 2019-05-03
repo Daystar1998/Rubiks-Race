@@ -16,13 +16,36 @@
 package engine.objects.gameBoards;
 
 import engine.math.Vector2f;
+import engine.objects.GameObject;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * @author Matthew Day
  */
 public class SliderGrid extends GridBoard {
+	
+	protected class MovingObject {
+		
+		public long startTime;
+		public long totalTime;
+		public Vector2f start;
+		public Vector2f destination;
+		public GameObject object;
+		
+		public MovingObject(GameObject object, Vector2f start, Vector2f destination, long startTime, long totalTimeMillis) {
+			
+			this.object = object;
+			this.start = start;
+			this.destination = destination;
+			
+			this.startTime = startTime;
+			this.totalTime = totalTimeMillis;
+		}
+	}
+	
+	protected ArrayList<MovingObject> movingCells;
 	
 	public SliderGrid(Vector2f position, Vector2f scale, int rows, int columns) {
 		
@@ -37,5 +60,7 @@ public class SliderGrid extends GridBoard {
 	public SliderGrid(Vector2f position, Vector2f scale, int rows, int columns, float lineWidth, Color backColor) {
 		
 		super(position, scale, rows, columns, lineWidth, backColor);
+		
+		this.movingCells = new ArrayList<MovingObject>();
 	}
 }
