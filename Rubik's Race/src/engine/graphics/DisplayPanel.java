@@ -266,9 +266,16 @@ public class DisplayPanel extends JPanel implements IDisplay {
 
 		Graphics g = buffer2.getGraphics();
 		g.drawImage(buffer1, 0, 0, null);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g){
 		
-		g = super.getGraphics();
-		g.drawImage(buffer2, 0, 0, this);
+		super.paintComponent(g);
+		
+		g.drawImage(buffer2, 0, 0, null);
+		
+		repaint();
 	}
 
 	public Color getClearColor() {
