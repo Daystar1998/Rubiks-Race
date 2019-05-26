@@ -16,6 +16,7 @@
 
 package game;
 
+import engine.GameLoop;
 import engine.graphics.Renderer;
 
 /**
@@ -24,6 +25,7 @@ import engine.graphics.Renderer;
 
 public abstract class AGame {
 	
+	private GameLoop loop;
 	private int width, height;
 	
 	public AGame(int width, int height) {
@@ -37,6 +39,16 @@ public abstract class AGame {
 	public abstract void update(double frameTime);
 	
 	public abstract void render(Renderer renderer);
+	
+	public GameLoop getLoop() {
+		
+		return loop;
+	}
+	
+	public void setLoop(GameLoop loop) {
+		
+		this.loop = loop;
+	}
 	
 	public int getWidth() {
 		
