@@ -13,16 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package game;
+
+import engine.GameLoop;
+import engine.graphics.DisplayPanel;
+import engine.graphics.Renderer;
+import engine.graphics.Window;
+
+import java.awt.Color;
 
 /**
  * @author Matthew Day
  */
-
 public class Main {
-
-	public static void main(String[] args){
+	
+	public static void main(String[] args) {
 		
+		int width = 800;
+		int height = 600;
+		
+		DisplayPanel panel = new DisplayPanel(width, height, Color.gray);
+		Window window = new Window("Rubik's Race", width, height, panel);
+		
+		Renderer renderer = new Renderer(panel);
+		
+		GameLoop loop = new GameLoop(new RubiksRaceGame(window, panel, width, height), renderer, 60);
+		
+		loop.start();
 	}
 }
