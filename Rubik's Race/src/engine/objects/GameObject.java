@@ -49,7 +49,7 @@ public class GameObject {
 		this.scale = scale;
 	}
 	
-	public void updateAll(double frameTime){
+	public synchronized void updateAll(double frameTime){
 		
 		update(frameTime);
 		
@@ -66,9 +66,9 @@ public class GameObject {
 		removedChildren.clear();
 	}
 
-	public void update(double frameTime) {}
+	public synchronized void update(double frameTime) {}
 
-	public void renderAll(Renderer renderer) {
+	public synchronized void renderAll(Renderer renderer) {
 		
 		render(renderer);
 
@@ -78,9 +78,9 @@ public class GameObject {
 		}
 	}
 
-	public void render(Renderer renderer) {}
+	public synchronized void render(Renderer renderer) {}
 
-	public void addChild(GameObject child) {
+	public synchronized void addChild(GameObject child) {
         
         if(child.getParent() != null){
             
@@ -92,7 +92,7 @@ public class GameObject {
 		children.add(child);
 	}
 
-	public void removeChild(GameObject child) {
+	public synchronized void removeChild(GameObject child) {
 
 		removedChildren.add(child);
 	}

@@ -13,26 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package engine;
 
 import engine.graphics.Renderer;
 import game.AGame;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * @author Matthew Day
  */
-
 public class GameLoop implements Runnable {
 	
 	private int maxFPS;
 	private double frameTime;
 	
 	private boolean running;
-
+	
 	private AGame game;
 	private Renderer renderer;
-
+	
+	private Thread thread;
+	
 	public GameLoop(AGame game, Renderer renderer, int maxFPS) {
 		
 		this.game = game;
@@ -40,19 +43,22 @@ public class GameLoop implements Runnable {
 		
 		this.maxFPS = maxFPS;
 		this.frameTime = 1.0 / maxFPS;
+		
+		game.setLoop(this);
 	}
 	
-	public void start(){
+	public void start() {
 		
-		if(!running){
+		if (!running) {
 			
 			running = true;
-			run();
+			thread = new Thread(this);
+			thread.start();
 		}
 	}
 	
 	@Override
-	public void run(){
+	public void run() {
 		
 		game.initialize();
 		
@@ -61,7 +67,7 @@ public class GameLoop implements Runnable {
 		long lastTime = System.nanoTime();
 		double unprocessedTime = 0;
 		
-		while(running){
+		while (running) {
 			
 			long startTime = System.nanoTime();
 			long passedTime = startTime - lastTime;
@@ -69,7 +75,7 @@ public class GameLoop implements Runnable {
 			
 			unprocessedTime += passedTime / 1000000000D;
 			
-			while(unprocessedTime > frameTime) {
+			while (unprocessedTime > frameTime) {
 				
 				renderFrame = true;
 				
@@ -78,20 +84,35 @@ public class GameLoop implements Runnable {
 				game.update(frameTime);
 			}
 			
-			if(renderFrame) {
+			if (renderFrame) {
 				
 				renderer.clear();
 				game.render(renderer);
 				renderer.render();
 				
 				renderFrame = false;
+			} else {
+				
+				try {
+					
+					Thread.sleep(1);
+				} catch (InterruptedException ex) {
+					Logger.getLogger(GameLoop.class.getName()).log(Level.SEVERE, null, ex);
+				}
 			}
 		}
 	}
 	
-	public void stop(){
+	public void stop() {
 		
-		if(running){
+		if (running) {
+			
+			try {
+				
+				thread.join();
+			} catch (InterruptedException ex) {
+				Logger.getLogger(GameLoop.class.getName()).log(Level.SEVERE, null, ex);
+			}
 			
 			running = false;
 		}
